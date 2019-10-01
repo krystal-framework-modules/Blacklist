@@ -26,6 +26,18 @@ final class BlacklistService extends AbstractService
     }
 
     /**
+     * Checks whether a user is blocked by owner
+     * 
+     * @param int $ownerId Owner id
+     * @param int $victimId User id to be blocked
+     * @return boolean
+     */
+    public function isBlocked($ownerId, $victimId)
+    {
+        return $this->blacklistMapper->isBlocked($ownerId, $victimId);
+    }
+
+    /**
      * Find blocked ids of an owner
      * 
      * @param int $ownerId Owner id

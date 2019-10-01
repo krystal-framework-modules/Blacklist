@@ -15,6 +15,23 @@ final class BlacklistMapper extends AbstractMapper
     }
 
     /**
+     * Checks whether a user is blocked by owner
+     * 
+     * @param int $ownerId Owner id
+     * @param int $victimId User id to be blocked
+     * @return boolean
+     */
+    public function isBlocked($ownerId, $victimId)
+    {
+        $db = $this->db->select(AbstractMapper::PARAM_JUNCTION_MASTER_COLUMN)
+                       ->from(self::getTableName())
+                       ->whereEquals(AbstractMapper::PARAM_JUNCTION_MASTER_COLUMN, $ownerId)
+                       ->andWhereEquals(AbstractMapper::PARAM_JUNCTION_SLAVE_COLUMN, $victimId);
+
+        return (bool) $db->queryScalar();
+    }
+
+    /**
      * Find blocked ids of an owner
      * 
      * @param int $ownerId Owner id
