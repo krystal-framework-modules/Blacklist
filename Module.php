@@ -14,8 +14,7 @@ final class Module extends AbstractModule
      */
     public function getRoutes()
     {
-        return array(
-        );
+        return include(__DIR__) . '/Config/routes.php';
     }
 
     /**
@@ -26,7 +25,7 @@ final class Module extends AbstractModule
     public function getServiceProviders()
     {
         return array(
-            'blacklistService' => new BlacklistService($this->getMapper('\Blacklist\Storage\MySQL\BlacklistMapper'))
+            'blacklistService' => new BlacklistService($this->createMapper('\Blacklist\Storage\MySQL\BlacklistMapper'))
         );
     }
 }
