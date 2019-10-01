@@ -3,6 +3,7 @@
 namespace Blacklist;
 
 use Krystal\Application\Module\AbstractModule;
+use Blacklist\Service\BlacklistService;
 
 final class Module extends AbstractModule
 {
@@ -25,6 +26,7 @@ final class Module extends AbstractModule
     public function getServiceProviders()
     {
         return array(
+            'blacklistService' => new BlacklistService($this->getMapper('\Blacklist\Storage\MySQL\BlacklistMapper'))
         );
     }
 }
