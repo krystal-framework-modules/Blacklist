@@ -12,7 +12,7 @@ final class BlacklistService extends AbstractService
      * 
      * @var \Blacklist\Storage\MySQL\BlacklistMapper
      */
-    private $blacklistMapper
+    private $blacklistMapper;
 
     /**
      * State initialization
@@ -23,5 +23,48 @@ final class BlacklistService extends AbstractService
     public function __construct(BlacklistMapper $blacklistMapper)
     {
         $this->blacklistMapper = $blacklistMapper;
+    }
+
+    /**
+     * Find blocked ids of an owner
+     * 
+     * @param int $ownerId Owner id
+     * @return boolean
+     */
+    public function findBlockedIds($ownerId)
+    {
+        return $this->blacklistMapper->findBlockedIds($ownerId);
+    }
+
+    /**
+     * Blocks a user
+     * 
+     * @param int $ownerId Owner id
+     * @param int $victimId User id to be blocked
+     * @return boolean
+     */
+    public function block($ownerId, $victimId)
+    {
+        if ($ownerId == $victimId) {
+            return false;
+        }
+
+        return $this->blacklistMapper->block($ownerId, $victimId);
+    }
+
+    /**
+     * Unblocks a user
+     * 
+     * @param int $ownerId Owner id
+     * @param int $victimId User id to be unblocked
+     * @return boolean
+     */
+    public function unblock($ownerId, $victimId)
+    {
+        if ($ownerId == $victimId) {
+            return false;
+        }
+
+        return $this->blacklistMapper->unblock($ownerId, $victimId);
     }
 }
