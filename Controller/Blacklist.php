@@ -37,7 +37,7 @@ final class Blacklist extends AbstractSiteController
             $this->flashBag->set('success', 'Selected user has been blocked successfully');
         }
 
-        return 1;
+        return $this->response->back();
     }
 
     /**
@@ -52,6 +52,6 @@ final class Blacklist extends AbstractSiteController
             $this->flashBag->set('success', 'Selected user has been unblocked successfully');
         }
 
-        return 1;
+        return $this->response->back();
     }
 }
