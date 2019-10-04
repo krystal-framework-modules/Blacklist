@@ -14,10 +14,14 @@ final class Blacklist extends AbstractSiteController
      */
     public function listAction()
     {
-        $blocked = $this->getModuleService('blacklistService')->findBlockedIds($this->getAuthService()->getId());
+        // Find blocked ids of current user
+        $blockedIds = $this->getModuleService('blacklistService')->findBlockedIds($this->getAuthService()->getId());
+
+        // Find blocked users
+        $users = $this->getAuthService()->findByIds($blockedIds);
 
         return $this->view->render('profile/blocked', array(
-            'blocked' => $blocked
+            'blocked' => $users
         ));
     }
 
