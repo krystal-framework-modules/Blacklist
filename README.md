@@ -12,11 +12,11 @@ There are two corresponding controller actions to do that. Whenever you need to 
 
 To block a user by their id:
 
-`<a href="<?= $this->url('Blacklist:Blacklist@unblockAction', array($id)); ?>">Unblock</a>`
+`<a href="<?= $this->url('Blacklist:Blacklist@blockAction', array($id)); ?>">block</a>`
 
 To unblock a user by their id:
 
-`<a href="<?= $this->url('Blacklist:Blacklist@blockAction', array($id)); ?>">Unblock</a>`
+`<a href="<?= $this->url('Blacklist:Blacklist@unblockAction', array($id)); ?>">Unblock</a>`
 
 Where `$id` is an id of a user to be either blocked or unblocked. After clicking on aforementioned links, a page gets refreshed flashing a corresponding message.
 
