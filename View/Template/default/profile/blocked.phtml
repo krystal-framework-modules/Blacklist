@@ -1,0 +1,22 @@
+
+<?php if (!empty($blocked)): ?>
+<div class="row">
+    <?php foreach ($blocked as $user): ?>
+    <div class="col-lg-3">
+        <p>
+            <?= $user['name']; ?>
+            <?php if (isset($user['age'])): ?>
+            <small class="text-muted"> / <?= $user['age']; ?></small>
+            <?php endif; ?>
+        </p>
+
+        <a class="btn btn-primary" href="<?= $this->url('Blacklist:Blacklist@unblockAction', array($user['id'])); ?>"><?php $this->show('Unblock'); ?></a>
+    </div>
+    <?php endforeach; ?>
+</div>
+
+<?php else: ?>
+
+<p><?php $this->show('You have no blocked users'); ?></p>
+
+<?php endif; ?>
